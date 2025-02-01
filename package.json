@@ -1,0 +1,23 @@
+{
+  "name": "myshop",
+  "version": "1.0.0",
+  "description": "React shopping cart app",
+  "homepage": "https://github.com/KalAcademy/MyShopC21#readme",
+  "bugs": {
+    "url": "https://github.com/KalAcademy/MyShopC21/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KalAcademy/MyShopC21.git"
+  },
+  "license": "ISC",
+  "author": "Kal Academy",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
