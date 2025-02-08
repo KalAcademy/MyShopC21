@@ -12,12 +12,17 @@
   },
   "license": "ISC",
   "author": "Kal Academy",
-  "type": "commonjs",
+  "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "shop": "concurrently \"npm run server\" \"npm run client\" "
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "concurrently": "^9.1.2",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
   }
 }
