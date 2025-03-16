@@ -1,4 +1,4 @@
-import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from "../constants/orderConstants";
+import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS, PAYPAL_KEY } from "../constants/orderConstants";
 
 export const orderCreateReducer = (state = {}, action) => {
   switch(action.type){
@@ -57,6 +57,13 @@ export const orderDetailsReducer = (state = {loading: true, orderItems: [], ship
          loading: false,
          error: action.payload
        }
+    case PAYPAL_KEY:
+      return {
+        loading: false,
+        paypalKey: action.payload
+      }
+    case ORDER_PAY_RESET:
+        return {}
      default:
        return state      
    }

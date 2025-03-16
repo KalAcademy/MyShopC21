@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from '../constants/orderConstants'
+import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, PAYPAL_KEY } from '../constants/orderConstants'
 
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -98,4 +98,20 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
            : error.message
       })
   }
+}
+
+export const getPaypalKey = () => async (dispatch, getState) => {
+    const {userInfo} = getState().userLogin
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userInfo.token}`
+      }
+    }    
+  const {data: clientId} = await axios.get('/api/config/paypal', config)
+
+  dispatch({
+    type: PAYPAL_KEY,
+    payload: clientId
+  })
 }
